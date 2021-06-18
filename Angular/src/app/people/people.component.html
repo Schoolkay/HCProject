@@ -1,12 +1,12 @@
 <div class="" style="margin-top: 10px; margin-bottom:10px;">
     <div>
-        <label style="padding-right: 10px; margin-left:20px; font-size:20px">Search:</label>
-        <input [(ngModel)]="nameSearchFiter" type="text" placeholder="Enter Name">
+        <label style="padding-right: 10px; margin-left:20px; font-size:30px">Search:</label>
+        <input [(ngModel)]="nameSearchFiter" type="text" placeholder="Enter Name" style="height: 35px; margin-bottom:15px;">
         <button class="btn btn-dark mb-2 mr-2" type="button"  (click)="SearchFunction()" style="margin-left: 20px;">Go!</button>
         <button class="btn btn-dark mb-2 mr-2" type="button"  (click)="RefreshPersonList()" style="margin-left: 20px;">Reset</button>
     
         <button class="btn btn-dark float-right mb-2 mr-2" style="width: 15%;" (click)="AddPerson(content)"
-        data-backdrop="static" data-keyboard="static">Add Employee</button>
+        data-backdrop="static" data-keyboard="static">Add Person</button>
     
         <ng-template #content let-modal>
         <div class="modal-header">
@@ -30,7 +30,7 @@
     <div>
         <table class="table table-striped" *ngIf="!isLoading">
             <thead>
-                <tr>
+                <tr style="font-size: 30px;">
                     <th>Name</th>
                     <th>Age</th>
                     <th>Address</th>
@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let dataItem of personList">
+                <tr *ngFor="let dataItem of personList" style="font-size: 20px;">
                     <td>{{dataItem.name}}</td>
                     <td>{{dataItem.age}}</td>
                     <td>{{dataItem.address}}</td>
