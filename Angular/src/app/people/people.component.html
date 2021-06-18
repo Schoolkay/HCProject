@@ -1,0 +1,52 @@
+<div class="" style="margin-top: 10px; margin-bottom:10px;">
+    <div>
+        <label style="padding-right: 10px; margin-left:20px; font-size:20px">Search:</label>
+        <input [(ngModel)]="nameSearchFiter" type="text" placeholder="Enter Name">
+        <button class="btn btn-dark mb-2 mr-2" type="button"  (click)="SearchFunction()" style="margin-left: 20px;">Go!</button>
+        <button class="btn btn-dark mb-2 mr-2" type="button"  (click)="RefreshPersonList()" style="margin-left: 20px;">Reset</button>
+    
+        <button class="btn btn-dark float-right mb-2 mr-2" style="width: 15%;" (click)="AddPerson(content)"
+        data-backdrop="static" data-keyboard="static">Add Employee</button>
+    
+        <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">{{modalTitle}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click'); closeClick()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <app-add-person [person]="person" (add)="closeClick()"></app-add-person>
+        </div>
+        </ng-template>
+    </div>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; margin-top: 50px;">
+        <mat-progress-spinner mode="indeterminate" diameter="300" ></mat-progress-spinner>
+        <br>        
+    </div>
+    <div *ngIf="isLoading" style="font-size: 40px; display: flex; justify-content: center; margin-top: 20px;"> 
+        <p>Loading...</p>
+    </div> 
+    <div>
+        <table class="table table-striped" *ngIf="!isLoading">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Interests</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dataItem of personList">
+                    <td>{{dataItem.name}}</td>
+                    <td>{{dataItem.age}}</td>
+                    <td>{{dataItem.address}}</td>
+                    <td>{{dataItem.interests}}</td>
+                    <td><img [src]=GetPersonImage(dataItem.imageName) width="75px" height="70px"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+</div>
